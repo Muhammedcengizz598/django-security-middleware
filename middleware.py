@@ -119,24 +119,6 @@ class RateLimitMiddleware:
 security_logger = logging.getLogger('security')
 
 
-class JsonRedirectMiddleware(MiddlewareMixin):
-    async_mode = False
-    
-    def process_response(self, request, response):
-        # JSON response kontrolü
-        if (isinstance(response, JsonResponse) or 
-            response.get('Content-Type', '').startswith('application/json')):
-            return HttpResponseRedirect('/')
-        return response
-
-
-# Güvenlik logger'ı
-security_logger = logging.getLogger('security')
-
-
-logger = logging.getLogger(__name__)
-
-
 logger = logging.getLogger(__name__)
 
 class ComprehensiveSecurityMiddleware(MiddlewareMixin):
